@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Pescando Datos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='prettify.css') }}" />
+</head>
+<body>
+    <div id="map" style="width:100%; height:300px;"></div>
+
+    <h1>Embarcaciones en México</h1>
+
+    <table border=1 cellpadding=7>
+        <tr>
+            <th>RNPA</th>
+            <th>Nombre</th>
+            <th>Tipo</th>
+            <th>Estado</th>
+            <th>Año Construido</th>
+        </tr>
+    {% for obj in object_list %}
+        <tr>
+            <td>{{ obj['RNPA'] }}</td>
+            <td>{{ obj['Nombre'].decode('UTF-8') }}</td>
+            <td>{{ obj['Tipo'] }}</td>
+            <td>{{ obj['Estado'] }}</td>
+            <td>{{ obj['ano_construccion'] }}</td>
+        </tr>
+    {% endfor %}
+    </table>
+</body>
+</html>

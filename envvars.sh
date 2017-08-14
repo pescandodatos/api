@@ -1,0 +1,1 @@
+export SETTINGS=settings.cfg
