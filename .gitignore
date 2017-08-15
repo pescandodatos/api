@@ -4,3 +4,4 @@ todo-models
 .vscode
 .DS_Store
 .env
+whoosh_index

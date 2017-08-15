@@ -1,9 +1,12 @@
 csvsql --table permisos permisos.csv
 csvsql --insert --table permisos --db sqlite:///datos/pescando.db datos/permisos.csv
 
-csvsql --insert --table embarcaciones --db sqlite:///pescando.db ../datos/embarcaciones.csv
 csvsql --insert --table activos --db sqlite:///pescando.db ../datos/activos.csv
 csvsql --insert --table unidades_economicas --db sqlite:///pescando.db ../datos/unidades_economicas.csv
+
+csvsql --table embarcaciones --db sqlite:///datos/pescando.db datos/embarcaciones.csv >> create.sql
+csvsql --insert --no-create --table embarcaciones --db sqlite:///datos/pescando.db datos/embarcaciones.csv
+
 
 csvsql --insert --table inegi --db sqlite:///pescando.db inegi.csv >> create.sql
 csvsql --insert -e iso-8859-1 --table marginacion --db sqlite:///pescando.db marginacion.csv >> create.sql
