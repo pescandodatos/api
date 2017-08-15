@@ -5,3 +5,4 @@ todo-models
 .DS_Store
 .env
 whoosh_index
+activos_geo.csv
