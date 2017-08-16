@@ -1,3 +1,7 @@
-# API SPECIFICATION
+# Especificación de API
 
-TODO 
+## Permisos
+
+* GET
+* /api/permiso
+* Respuesta: permisos
