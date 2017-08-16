@@ -42,10 +42,10 @@ CREATE TABLE unidades_economicas (
 
 CREATE TABLE embarcaciones (      
 		"id" INTEGER PRIMARY KEY AUTOINCREMENT,                  
-        "rnpa" DECIMAL NOT NULL,             
+        "rnpa" VARCHAR(10) NOT NULL,             
         "nombre" VARCHAR(56),           
-        "rnpa_unidad_economica" DECIMAL NOT NULL,   
-        "nombre_unidad_economica" VARCHAR(109) NOT NULL,                                                
+        "rnpa_unidad_economica" VARCHAR(10),   
+        "nombre_unidad_economica" VARCHAR(109),                                                
         "estado" VARCHAR(19) NOT NULL,              
         "municipio" VARCHAR(49) NOT NULL,           
         "localidad" VARCHAR(60) NOT NULL,           

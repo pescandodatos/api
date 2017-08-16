@@ -59,5 +59,21 @@ class UnidadEconomica(db.Model):
     def __repr__(self):
         return '<Unidad Economica %r>' % self.nombre
 
+class Embarcacion(db.Model):
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    rnpa = db.Column('rnpa', db.String(10))
+    nombre = db.Column('nombre', db.String(56))
+    rnpa_unidad_economica = db.Column('rnpa_unidad_economica', db.String)
+    nombre_unidad_economica = db.Column('nombre_unidad_economica', db.String)
+    estado = db.Column('estado', db.String(19))
+    municipio = db.Column('municipio', db.String(49))
+    localidad = db.Column('localidad', db.String(60))
+    tipo = db.Column('tipo', db.String)
+    fecha_registro = db.Column('fecha_registro', db.String)
+    inegi = db.Column('cod_inegi', db.String)
+
+    def __repr__(self):
+        return '<Embarcacion %r>' % self.nombre
+
 if enable_search:
     whooshalchemy.whoosh_index(app, Activo)
