@@ -7,10 +7,10 @@ import flask.ext.restless
 # Endpoints for the models
 manager = flask.ext.restless.APIManager(app, flask_sqlalchemy_db=db)
 
-manager.create_api(Permiso, methods=['GET'])
-manager.create_api(Activo, methods=['GET'])
-manager.create_api(UnidadEconomica, methods=['GET'])
-manager.create_api(Embarcacion, methods=['GET'])
+manager.create_api(Permiso, primary_key='rnpa')
+manager.create_api(Activo, methods=['GET'], primary_key='rnpa')
+manager.create_api(UnidadEconomica, methods=['GET'], primary_key='rnpa')
+manager.create_api(Embarcacion, methods=['GET'], primary_key='rnpa')
 
 @app.errorhandler(404)
 def not_found_error(error):
