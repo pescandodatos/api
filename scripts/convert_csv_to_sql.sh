@@ -52,15 +52,31 @@ csvsql --table beneficiarios_gasolina 2011_2015_beneficiarios_gasolina.csv > tem
 sqlite3 pescando.db < temporal.sql
 csvsql --insert --no-create --table beneficiarios_gasolina --db sqlite:///pescando.db 2011_2015_beneficiarios_gasolina.csv                                  
 
+# Create table, add cod inegi, insert data
+csvsql --table beneficiarios_electricos 2011_beneficiarios_electricos.csv > temporal.sql                                     
+sqlite3 pescando.db < temporal.sql
+csvsql --insert --no-create --table beneficiarios_electricos --db sqlite:///pescando.db 2011_beneficiarios_electricos.csv                                    
+
+# Create table, add cod inegi, insert data
+csvsql --table beneficiarios_integral 2012_beneficiarios_componente_infraestructura_integral.csv > temporal.sql              
+sqlite3 pescando.db < temporal.sql
+csvsql --insert --no-create --table beneficiarios_integral --db sqlite:///pescando.db 2012_beneficiarios_componente_infraestructura_integral.csv           
 
 
+# Create table, add cod inegi, insert data
+csvsql --table solicitudes_diesel 2014_2015_solicitudes_diesel.csv > temporal.sql                
+sqlite3 pescando.db < temporal.sql
+csvsql --insert --no-create --table solicitudes_diesel --db sqlite:///pescando.db 2014_2015_solicitudes_diesel.csv                
 
+# Create table, add cod inegi, insert data
+csvsql --table solicitudes_gasolina 2014_2015_solicitudes_gasolina.csv > temporal.sql
+sqlite3 pescando.db < temporal.sql
+csvsql --insert --no-create --table solicitudes_gasolina --db sqlite:///pescando.db 2014_2015_solicitudes_gasolina.csv
 
+# Create table, add cod inegi, insert data
+csvsql --table beneficiarios_modernicacion_may 2014_beneficiarios_modernizacion_embarcaciones_mayores.csv > temporal.sql  
+sqlite3 pescando.db < temporal.sql
+csvsql --insert --no-create --table beneficiarios_modernicacion_may --db sqlite:///pescando.db 2014_beneficiarios_modernizacion_embarcaciones_mayores.csv   
 
-csvsql --insert --table beneficiarios_electricos --db sqlite:///pescando.db 2011_beneficiarios_electricos.csv >> create.sql                                       
-csvsql --insert --table beneficiarios_integral --db sqlite:///pescando.db 2012_beneficiarios_componente_infraestructura_integral.csv           
-csvsql --insert --table solicitudes_diesel --db sqlite:///pescando.db 2014_2015_solicitudes_diesel.csv                
-csvsql --insert --table solicitudes_gasolina --db sqlite:///pescando.db 2014_2015_solicitudes_gasolina.csv     
-csvsql --insert --table beneficiarios_modernicacion_may --db sqlite:///pescando.db 2014_beneficiarios_modernizacion_embarcaciones_mayores.csv   
 
 #csvsql --insert  --table solicitudes_embarcaciones_menores --db sqlite:///pescando.db 2014_2015_solicitudes_embarcaciones_menores.csv                         
