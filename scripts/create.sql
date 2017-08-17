@@ -202,3 +202,72 @@ CREATE TABLE beneficiarios_gasolina (
 	monto DECIMAL,
     cod_inegi VARCHAR(55)
 );
+
+CREATE TABLE beneficiarios_electricos (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+	ano DECIMAL NOT NULL, 
+	estado VARCHAR(6) NOT NULL, 
+	beneficiario VARCHAR(37) NOT NULL, 
+	rnpa DECIMAL NOT NULL, 
+	municipio VARCHAR(10) NOT NULL, 
+	localidad VARCHAR(14) NOT NULL, 
+	tipo_monto VARCHAR(7) NOT NULL, 
+	monto DECIMAL NOT NULL,
+    cod_inegi VARCHAR(55)
+);
+
+CREATE TABLE beneficiarios_integral (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+	ano INTEGER, 
+	beneficiario VARCHAR(76) NOT NULL, 
+	rnpa VARCHAR(64) NOT NULL, 
+	nombre_proyecto VARCHAR(156) NOT NULL, 
+	tipo_apoyo VARCHAR(32) NOT NULL, 
+	especie VARCHAR(73) NOT NULL, 
+	estado VARCHAR(19) NOT NULL, 
+	municipio VARCHAR(17) NOT NULL, 
+	localidad VARCHAR(30) NOT NULL, 
+	monto DECIMAL NOT NULL,
+    cod_inegi VARCHAR(55)
+);
+
+CREATE TABLE solicitudes_diesel (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+	tipo VARCHAR(6) NOT NULL, 
+	ano INTEGER, 
+	estado VARCHAR(19) NOT NULL, 
+	solicitudes_recibidas INTEGER, 
+	solicitudes_procesadas INTEGER,
+    cod_inegi VARCHAR(55)
+);
+
+CREATE TABLE solicitudes_gasolina (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+	tipo VARCHAR(8) NOT NULL, 
+	ano INTEGER, 
+	estado VARCHAR(19) NOT NULL, 
+	municipio VARCHAR(36) NOT NULL, 
+	localidad VARCHAR(52) NOT NULL, 
+	solicitudes_atendidas DECIMAL NOT NULL, 
+	solicitudes_recibidas DECIMAL NOT NULL,
+    cod_inegi VARCHAR(55)
+);
+
+CREATE TABLE beneficiarios_modernicacion_may (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+	ano INTEGER, 
+	estado VARCHAR(15) NOT NULL, 
+	puerto VARCHAR(14) NOT NULL, 
+	beneficiario VARCHAR(108) NOT NULL, 
+	rnpa DECIMAL, 
+	embarcacion VARCHAR(32) NOT NULL, 
+	monto_aprobado DECIMAL NOT NULL, 
+	pagado DECIMAL, 
+	"2014_nov_dic_pasivos" DECIMAL, 
+	"2014_enero_marzo_pasivos" DECIMAL, 
+	desistido DECIMAL, 
+	acta DECIMAL, 
+	reintegro DECIMAL, 
+	pdte_comprobante_pago DECIMAL,
+    cod_inegi VARCHAR(55)
+);
