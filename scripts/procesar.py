@@ -14,8 +14,22 @@ def remove_non_ascii(text):
 def main():
     #tables = ['PERMISOS', 'EMBARCACIONES', 'beneficiarios_diesel', 'beneficiarios_electricos', 'beneficiarios_gasolina', 'beneficiarios_integral', 'beneficiarios_menores', 'beneficiarios_modernizacion_mayores', 'beneficiarios_modernizacion_menores', 'beneficiarios_motores', 'beneficiarios_reconversion', 'solicitudes_gasolina', 'solicitudes_may', 'solicitudes_men']
     tables = [
-        'embarcaciones'
-    ]
+        'beneficiarios_reconversion',
+        'beneficiarios_reconversion',     
+        'beneficiarios_componentes',                            
+        'beneficiarios_diesel',                                       
+        'beneficiarios_electricos',                             
+        'beneficiarios_gasolina',                                   
+        'beneficiarios_integral',           
+        'solicitudes_diesel',            
+        'beneficiarios_menores',            
+        'solicitudes_gasolina',           
+        'beneficiarios_modernicacion_may',  
+        'solicitudes_may',                
+        'beneficiarios_modernizacion_men',  
+        'solicitudes_men',                
+        'beneficiarios_motores']              
+
     conn = sqlite3.connect('pescando.db')
     c = conn.cursor()
     u = conn.cursor()
