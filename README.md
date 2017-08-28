@@ -13,6 +13,11 @@
     $ pip install -r requirements.txt
 ```
 
+#### Configurar variables de ambiente
+```
+    $ export SETTINGS=settings.cfg
+```
+
 #### Correr la aplicación
 ```
     $ python run.py
