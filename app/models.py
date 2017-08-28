@@ -1,3 +1,5 @@
+# coding: utf-8
+
 from app import db
 from app import app
 
@@ -12,7 +14,6 @@ else:
 class Permiso(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     tipo_embarcacion = db.Column('tipo_embarcacion', db.String(7), nullable=False)
-    inegi = db.Column('cod_inegi', db.String)
     estado = db.Column('estado', db.String(19), nullable=False)
     municipio = db.Column('municipio', db.String(33))
     localidad = db.Column('localidad', db.String(326)) 
@@ -22,6 +23,7 @@ class Permiso(db.Model):
     especie = db.Column('especie', db.String(216))
     inicio = db.Column('inicio', db.String)
     termino = db.Column('termino', db.String)
+    inegi = db.Column('cod_inegi', db.String)
     
     def __repr__(self):
         return '<Permiso %r>' % self.titular
@@ -36,8 +38,8 @@ class Activo(db.Model):
     estado = db.Column('estado', db.String(19), nullable=False)
     municipio = db.Column('municipio', db.String(33))
     localidad = db.Column('localidad', db.String(326))
-    inegi = db.Column('cod_inegi', db.String)
     ano = db.Column('ano_construccion', db.String(13))
+    inegi = db.Column('cod_inegi', db.String)
     
     def __repr__(self):
         return '<Activo %r>' % self.nombre
@@ -74,6 +76,237 @@ class Embarcacion(db.Model):
 
     def __repr__(self):
         return '<Embarcacion %r>' % self.nombre
+
+class Marginacion(db.Model):
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    cod_estado = db.Column('ENT', db.Integer, nullable=False)
+    estado = db.Column('NOM_ENT', db.String(31), nullable=False)
+    cod_municipio = db.Column('MUN', db.Integer, nullable=False)
+    municipio = db.Column('NOM_MUN', db.String(35), nullable=False)
+    cod_localidad = db.Column('LOC', db.Integer, nullable=False)
+    localidad = db.Column('NOM_LOC', db.String(64), nullable=False)
+    poblacion_total = db.Column('POB_TOT', db.Integer, nullable=False)
+    viviendas_particulares = db.Column('VPH', db.Integer, nullable=False)
+    analfabeta = db.Column('ANAL10', db.Integer, nullable=False)
+    sin_primaria = db.Column('SPRIM10', db.Integer, nullable=False)
+    sin_excusado = db.Column('SEXC10', db.Integer, nullable=False)
+    sin_energia_electrica = db.Column('SEE10', db.Integer, nullable=False)
+    sin_agua_entubada = db.Column('SAGUAE10', db.Integer, nullable=False)
+    ocupantes_por_cuarto = db.Column('PROM_OCC10', db.Integer, nullable=False)
+    sin_piso_tierra = db.Column('PISOTIE10', db.Integer, nullable=False)
+    sin_refrigerador = db.Column('SREFRI10', db.Integer, nullable=False)
+    indice_marginacion_2010 = db.Column('IM_2010', db.Integer, nullable=False)
+    grado_marginacion = db.Column('GM_2010', db.String(8), nullable=False)
+    indice_marginacion = db.Column('IMC0A100', db.Integer, nullable=False)
+    lugar_en_nacional = db.Column('LUG_NAL', db.Integer, nullable=False)
+    lugar_en_estatal = db.Column('LUG_EDO', db.Integer, nullable=False)
+
+# ENT	Clave de la entidad federativa.
+# NOM_ENT	Nombre oficial de la entidad federativa.
+# MUN	Clave del municipio al interior de una entidad federativa.
+# NOM_MUN	Nombre del municipio al interior de una entidad federativa.
+# LOC	Clave de la localidad al interior de cada municipio.
+# NOM_LOC	Nombre de la localidad al interior de cada municipio.
+# POB_TOT	Población total.
+# VPH	Viviendas particulares habitadas
+# ANAL10	Porcentaje de población de 15 años o más analfabeta.
+# SPRIM10	Porcentaje de población de 15 años o más sin primaria completa.
+# SEXC10	Porcentaje de viviendas particulares sin excusado.
+# SEE10	Porcentaje de viviendas particulares sin energía eléctrica.
+# SAGUAE10	Porcentaje de viviendas particulares sin agua entubada.
+# PROM_OCC10	Promedio de ocupantes por cuarto en viviendas particulares habitadas.
+# PISOTIE10	Porcentaje de viviendas particulares con piso de tierra.
+# SREFRI10	Porcentaje de viviendas particulares sin refrigerador.
+# IM_2010	Índice de marginación 2010.
+# GM_2010	Grado de marginación 2010.
+# IMC0A100	Índice de marginación escala 0 a 100
+# LUG_NAL	Lugar que ocupa en el contexto nacional
+# LUG_EDO	Lugar que ocupa en el contexto estatal
+
+class beneficiarios_reconversion(db.Model):
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    ano = db.Column('ano', db.String)
+    beneficiario = db.Column('Beneficiario', db.String)
+    rnpa = db.Column('Rnpa', db.String)
+    nombre_proyecto  = db.Column('Nombre proyecto', db.String)
+    tipo_proyecto  = db.Column('Tipo proyecto', db.String)
+    especie  = db.Column('Especie', db.String)
+    estado  = db.Column('Estado', db.String)
+    municipio  = db.Column('Municipio', db.String)
+    localidad  = db.Column('Localidad', db.String)
+    monto = db.Column('Monto', db.Integer)
+    inegi = db.Column('cod_inegi', db.String)
+
+class beneficiarios_componentes(db.Model):
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)   
+    ano = db.Column('ano', db.String)
+    beneficiario = db.Column('Beneficiario', db.String)
+    rnpa = db.Column('Rnpa', db.String)
+    especie  = db.Column('Especie', db.String)
+    estado  = db.Column('Estado', db.String)
+    municipio  = db.Column('Municipio', db.String)
+    localidad  = db.Column('Localidad', db.String)
+    monto = db.Column('Monto', db.Integer)
+    inegi = db.Column('cod_inegi', db.String)
+
+class beneficiarios_diesel(db.Model):
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)  
+    ano = db.Column('ano', db.String)
+    beneficiario = db.Column('Beneficiario', db.String)
+    rfc = db.Column('rfc', db.String)
+    rnpa = db.Column('Rnpa', db.String)
+    estado  = db.Column('Estado', db.String)
+    municipio  = db.Column('Municipio', db.String)
+    localidad  = db.Column('Localidad', db.String)
+    monto = db.Column('Monto', db.Integer)
+    inegi = db.Column('cod_inegi', db.String)
+
+class beneficiarios_electricos(db.Model):
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    ano = db.Column('ano', db.String)
+    beneficiario = db.Column('Beneficiario', db.String)
+    rnpa = db.Column('Rnpa', db.String)
+    estado  = db.Column('Estado', db.String)
+    municipio  = db.Column('Municipio', db.String)
+    localidad  = db.Column('Localidad', db.String)
+    tipo_monto = db.Column('tipo_monto', db.String)
+    monto = db.Column('Monto', db.Integer)
+    inegi = db.Column('cod_inegi', db.String)
+
+class beneficiarios_gasolina(db.Model):
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    ano = db.Column('ano', db.String)
+    beneficiario = db.Column('Beneficiario', db.String)
+    rfc = db.Column('rfc', db.String)
+    rnpa = db.Column('Rnpa', db.String)
+    estado  = db.Column('Estado', db.String)
+    municipio  = db.Column('Municipio', db.String)
+    localidad  = db.Column('Localidad', db.String)
+    monto = db.Column('Monto', db.Integer)
+    inegi = db.Column('cod_inegi', db.String)
+
+class beneficiarios_integral(db.Model):
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    ano = db.Column('ano', db.String)
+    beneficiario = db.Column('Beneficiario', db.String)
+    rnpa = db.Column('Rnpa', db.String)
+    nombre_proyecto = db.Column('nombre_proyecto', db.String)
+    tipo_apoyo = db.Column('tipo_apoyo', db.String)
+    especie  = db.Column('Especie', db.String)
+    estado  = db.Column('Estado', db.String)
+    municipio  = db.Column('Municipio', db.String)
+    localidad  = db.Column('Localidad', db.String)
+    monto = db.Column('Monto', db.Integer)
+    inegi = db.Column('cod_inegi', db.String)
+
+class solicitudes_diesel(db.Model):
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    ano = db.Column('ano', db.String)
+    beneficiario = db.Column('Beneficiario', db.String)
+    rnpa = db.Column('Rnpa', db.String)
+    rfc = db.Column('rfc', db.String)
+    estado  = db.Column('Estado', db.String)
+    municipio  = db.Column('Municipio', db.String)
+    localidad  = db.Column('Localidad', db.String)
+    monto = db.Column('Monto', db.Integer)
+    inegi = db.Column('cod_inegi', db.String)                           
+
+class beneficiarios_menores(db.Model):
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    componente = db.Column('componente', db.String)
+    ano = db.Column('ano', db.String)
+    beneficiario = db.Column('Beneficiario', db.String)
+    rnpa = db.Column('Rnpa', db.String)
+    estado  = db.Column('Estado', db.String)
+    municipio  = db.Column('Municipio', db.String)
+    localidad  = db.Column('Localidad', db.String)
+    tipo_monto = db.Column('tipo_monto', db.String)
+    monto = db.Column('Monto', db.Integer)
+    inegi = db.Column('cod_inegi', db.String)   
+
+class solicitudes_gasolina(db.Model):
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    tipo = db.Column('tipo', db.String)
+    ano = db.Column('ano', db.String)
+    estado  = db.Column('Estado', db.String)
+    municipio  = db.Column('Municipio', db.String)
+    localidad  = db.Column('Localidad', db.String)
+    solicitudes_atendidas = db.Column('solicitudes_atendidas', db.Integer)
+    solicitudes_recibidas = db.Column('solicitudes_recibidas', db.Integer)
+    inegi = db.Column('cod_inegi', db.String)   
+    
+class solicitudes_may(db.Model):
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    ano = db.Column('ano', db.String)
+    estado  = db.Column('Estado', db.String)
+    municipio  = db.Column('Municipio', db.String)
+    localidad  = db.Column('Localidad', db.String)
+    solicitudes_atendidas = db.Column('apoyadas', db.Integer)
+    solicitudes_recibidas = db.Column('Apoyadas', db.Integer)
+    monto = db.Column('Monto', db.Integer)
+    inegi = db.Column('cod_inegi', db.String)   
+
+class solicitudes_men(db.Model):
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    componente = db.Column('componente', db.String)
+    ano = db.Column('ano', db.String)
+    estado  = db.Column('Estado', db.String)
+    municipio  = db.Column('Municipio', db.String)
+    localidad  = db.Column('Localidad', db.String)
+    solicitudes_atendidas = db.Column('apoyadas', db.Integer)
+    solicitudes_recibidas = db.Column('registradas', db.Integer)    
+    inegi = db.Column('cod_inegi', db.String)  
+
+class beneficiarios_modernicacion_may(db.Model):
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    ano = db.Column('ano', db.String)
+    beneficiario = db.Column('Beneficiario', db.String)
+    rnpa = db.Column('Rnpa', db.String)
+    estado  = db.Column('Estado', db.String)
+    municipio  = db.Column('Municipio', db.String)
+    localidad  = db.Column('Localidad', db.String)
+    puerto = db.Column('puerto', db.String)
+    embarcacion = db.Column('embarcacion', db.String)
+    monto_aprobado = db.Column('monto_aprobado', db.Integer)
+    pagado = db.Column('pagado', db.Integer)
+    desistido = db.Column('desistido', db.Integer)
+    acta = db.Column('acta', db.Integer)
+    reintegro = db.Column('reintegro', db.Integer)
+    pdte_comprobante_pago = db.Column('pdte_comprobante_pago', db.Integer)
+    inegi = db.Column('cod_inegi', db.String)   
+              
+class beneficiarios_modernizacion_men(db.Model):
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    ano = db.Column('ano', db.String)
+    beneficiario = db.Column('Beneficiario', db.String)
+    rnpa = db.Column('Rnpa', db.String)
+    estado  = db.Column('Estado', db.String)
+    municipio  = db.Column('Municipio', db.String)
+    localidad  = db.Column('Localidad', db.String)
+    puerto = db.Column('puerto', db.String)
+    embarcacion = db.Column('embarcacion', db.String)
+
+    monto_total = db.Column('monto_total', db.Integer)
+    aportacion_productor = db.Column('aportacion_productor', db.Integer)
+    aportacion_conapesca = db.Column('aportacion_conapesca', db.Integer)
+    pagado_por_concepto = db.Column('pagado_por_concepto', db.Integer)
+    pagado_reembolso = db.Column('pagado_reembolso', db.Integer)
+    pasivos = db.Column('pasivos', db.Integer)
+    desistido = db.Column('desistido', db.Integer)
+    saldo = db.Column('saldo', db.Integer)
+    inegi = db.Column('cod_inegi', db.String)        
+
+class beneficiarios_motores(db.Model):
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    ano = db.Column('ano', db.String)
+    beneficiario = db.Column('Beneficiario', db.String)
+    rnpa = db.Column('Rnpa', db.String)
+    estado  = db.Column('Estado', db.String)
+    municipio  = db.Column('Municipio', db.String)
+    localidad  = db.Column('Localidad', db.String)
+    tipo_monto = db.Column('Tipo_monto', db.String)
+    monto = db.Column('Monto_apoyado', db.Integer)
+    inegi = db.Column('cod_inegi', db.String)
 
 if enable_search:
     whooshalchemy.whoosh_index(app, Activo)
