@@ -11,6 +11,23 @@ else:
     if enable_search:
         import flask_whooshalchemy as whooshalchemy
 
+class Inegi(db.Model):
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    inegi_municipio = db.Column('COD_INEGI_MUNICIPIO', db.String)
+    inegi_localidad = db.Column('COD_INEGI_MUNICIPIO', db.String)
+    cod_estado = db.Column('COD_ESTADO', db.Integer)
+    estado = db.Column('ESTADO', db.String(19), nullable=False)
+    estado_abreviado = db.Column('NOM_ABR', db.String(19), nullable=False)
+    cod_municipio = db.Column('COD_MUNICIPIO', db.Integer)
+    municipio = db.Column('MUNICIPIO', db.String(33))
+    cod_localidad = db.Column('COD_LOCALIDAD', db.Integer)
+    localidad = db.Column('LOCALIDAD', db.String(326)) 
+    ambito = db.Column('AMBITO', db.String)
+    latitud = db.Column('LATITUD', db.String)
+    longitud = db.Column('LONGITUD', db.String)
+    altitud = db.Column('ALTITUD', db.String)
+    cve_carta = db.Column('CVE_CARTA', db.String)
+
 class Permiso(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     tipo_embarcacion = db.Column('tipo_embarcacion', db.String(7), nullable=False)
@@ -100,28 +117,6 @@ class Marginacion(db.Model):
     indice_marginacion = db.Column('IMC0A100', db.Integer, nullable=False)
     lugar_en_nacional = db.Column('LUG_NAL', db.Integer, nullable=False)
     lugar_en_estatal = db.Column('LUG_EDO', db.Integer, nullable=False)
-
-# ENT	Clave de la entidad federativa.
-# NOM_ENT	Nombre oficial de la entidad federativa.
-# MUN	Clave del municipio al interior de una entidad federativa.
-# NOM_MUN	Nombre del municipio al interior de una entidad federativa.
-# LOC	Clave de la localidad al interior de cada municipio.
-# NOM_LOC	Nombre de la localidad al interior de cada municipio.
-# POB_TOT	Población total.
-# VPH	Viviendas particulares habitadas
-# ANAL10	Porcentaje de población de 15 años o más analfabeta.
-# SPRIM10	Porcentaje de población de 15 años o más sin primaria completa.
-# SEXC10	Porcentaje de viviendas particulares sin excusado.
-# SEE10	Porcentaje de viviendas particulares sin energía eléctrica.
-# SAGUAE10	Porcentaje de viviendas particulares sin agua entubada.
-# PROM_OCC10	Promedio de ocupantes por cuarto en viviendas particulares habitadas.
-# PISOTIE10	Porcentaje de viviendas particulares con piso de tierra.
-# SREFRI10	Porcentaje de viviendas particulares sin refrigerador.
-# IM_2010	Índice de marginación 2010.
-# GM_2010	Grado de marginación 2010.
-# IMC0A100	Índice de marginación escala 0 a 100
-# LUG_NAL	Lugar que ocupa en el contexto nacional
-# LUG_EDO	Lugar que ocupa en el contexto estatal
 
 class beneficiarios_reconversion(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
