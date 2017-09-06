@@ -118,6 +118,10 @@ INSERT OR IGNORE INTO localidades (estado, municipio, localidad)
 INSERT OR IGNORE  INTO localidades (estado, municipio, localidad, cod_inegi_municipio, cod_inegi_localidad)
 	SELECT estado, municipio, localidad, cod_inegi_municipio, cod_inegi_localidad from inegi;
 
+-- COMPARAR BENEFICIARIOS CON UNIDADES
+
+select count(*) from unidades join beneficiarios
+on beneficiarios.rnpa = unidades.rnpa and beneficiarios.nombre = unidades.nombre
 
 -- PARA ACTUALIZAR CODIGOS INEGIS, SQL CODE A USAR CON TODAS LAS TABLAS
 
