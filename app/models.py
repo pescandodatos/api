@@ -27,10 +27,13 @@ class Inegi(db.Model):
     longitud = db.Column('LONGITUD', db.String)
     altitud = db.Column('ALTITUD', db.String)
     cve_carta = db.Column('CVE_CARTA', db.String)
+    inegi_localidad = db.Column('cod_inegi_localidad', db.String(9))
+    inegi_municipio = db.Column('cod_inegi_municipio', db.String(6))
 
-class Permiso(db.Model):
+class Permisos(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     tipo_embarcacion = db.Column('tipo_embarcacion', db.String(7), nullable=False)
+    tipo_permiso = db.Column('tipo_permiso', db.String)
     estado = db.Column('estado', db.String(19), nullable=False)
     municipio = db.Column('municipio', db.String(33))
     localidad = db.Column('localidad', db.String(326)) 
@@ -40,12 +43,23 @@ class Permiso(db.Model):
     especie = db.Column('especie', db.String(216))
     inicio = db.Column('inicio', db.String)
     termino = db.Column('termino', db.String)
-    inegi = db.Column('cod_inegi', db.String)
+    inegi_localidad = db.Column('cod_inegi_localidad', db.String(9))
+    inegi_municipio = db.Column('cod_inegi_municipio', db.String(6))
     
     def __repr__(self):
         return '<Permiso %r>' % self.titular
 
-class Activo(db.Model):
+# Toma todos los datos de los beneficiarios
+class Beneficiarios(db.Model):
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    rnpa = db.Column('rnpa', db.String)
+    nombre = db.Column('nombre', db.String(109), nullable=False)
+    
+    def __repr__(self):
+        return '<Beneficiario %r>' % self.nombre
+
+
+class Activos(db.Model):
     __searchable__ = ['nombre']
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -56,12 +70,13 @@ class Activo(db.Model):
     municipio = db.Column('municipio', db.String(33))
     localidad = db.Column('localidad', db.String(326))
     ano = db.Column('ano_construccion', db.String(13))
-    inegi = db.Column('cod_inegi', db.String)
+    inegi_localidad = db.Column('cod_inegi_localidad', db.String(9))
+    inegi_municipio = db.Column('cod_inegi_municipio', db.String(6))
     
     def __repr__(self):
-        return '<Activo %r>' % self.nombre
+        return '<Activos %r>' % self.nombre
 
-class UnidadEconomica(db.Model):
+class Unidades(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     rnpa = db.Column('rnpa', db.String(10))
     nombre = db.Column('nombre', db.String(109), nullable=False)
@@ -73,12 +88,13 @@ class UnidadEconomica(db.Model):
     estado = db.Column('estado', db.String(19), nullable=False)
     municipio = db.Column('municipio', db.String(33))
     localidad = db.Column('localidad', db.String(326))
-    inegi = db.Column('cod_inegi', db.String)
+    inegi_localidad = db.Column('cod_inegi_localidad', db.String(9))
+    inegi_municipio = db.Column('cod_inegi_municipio', db.String(6))
 
     def __repr__(self):
         return '<Unidad Economica %r>' % self.nombre
 
-class Embarcacion(db.Model):
+class Embarcaciones(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     rnpa = db.Column('rnpa', db.String(10))
     nombre = db.Column('nombre', db.String(56))
@@ -89,13 +105,16 @@ class Embarcacion(db.Model):
     localidad = db.Column('localidad', db.String(60))
     tipo = db.Column('tipo', db.String)
     fecha_registro = db.Column('fecha_registro', db.String)
-    inegi = db.Column('cod_inegi', db.String)
+    inegi_localidad = db.Column('cod_inegi_localidad', db.String(9))
+    inegi_municipio = db.Column('cod_inegi_municipio', db.String(6))
 
     def __repr__(self):
         return '<Embarcacion %r>' % self.nombre
 
 class Marginacion(db.Model):
+    __tablename__ = 'marginacion_localidad'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    cod_inegi = db.Column('cod_inegi', db.String(9))
     cod_estado = db.Column('ENT', db.Integer, nullable=False)
     estado = db.Column('NOM_ENT', db.String(31), nullable=False)
     cod_municipio = db.Column('MUN', db.Integer, nullable=False)
@@ -118,19 +137,20 @@ class Marginacion(db.Model):
     lugar_en_nacional = db.Column('LUG_NAL', db.Integer, nullable=False)
     lugar_en_estatal = db.Column('LUG_EDO', db.Integer, nullable=False)
 
-class beneficiarios_reconversion(db.Model):
+class beneficiarios_infraestructura(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     ano = db.Column('ano', db.String)
     beneficiario = db.Column('Beneficiario', db.String)
     rnpa = db.Column('Rnpa', db.String)
-    nombre_proyecto  = db.Column('Nombre proyecto', db.String)
-    tipo_proyecto  = db.Column('Tipo proyecto', db.String)
+    nombre_proyecto  = db.Column('nombre_proyecto', db.String)
+    tipo_proyecto  = db.Column('tipo_proyecto', db.String)
     especie  = db.Column('Especie', db.String)
     estado  = db.Column('Estado', db.String)
     municipio  = db.Column('Municipio', db.String)
     localidad  = db.Column('Localidad', db.String)
     monto = db.Column('Monto', db.Integer)
-    inegi = db.Column('cod_inegi', db.String)
+    inegi_localidad = db.Column('cod_inegi_localidad', db.String(9))
+    inegi_municipio = db.Column('cod_inegi_municipio', db.String(6))
 
 class beneficiarios_componentes(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)   
@@ -142,7 +162,8 @@ class beneficiarios_componentes(db.Model):
     municipio  = db.Column('Municipio', db.String)
     localidad  = db.Column('Localidad', db.String)
     monto = db.Column('Monto', db.Integer)
-    inegi = db.Column('cod_inegi', db.String)
+    inegi_localidad = db.Column('cod_inegi_localidad', db.String(9))
+    inegi_municipio = db.Column('cod_inegi_municipio', db.String(6))
 
 class beneficiarios_diesel(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)  
@@ -154,7 +175,8 @@ class beneficiarios_diesel(db.Model):
     municipio  = db.Column('Municipio', db.String)
     localidad  = db.Column('Localidad', db.String)
     monto = db.Column('Monto', db.Integer)
-    inegi = db.Column('cod_inegi', db.String)
+    inegi_localidad = db.Column('cod_inegi_localidad', db.String(9))
+    inegi_municipio = db.Column('cod_inegi_municipio', db.String(6))
 
 class beneficiarios_electricos(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -178,33 +200,16 @@ class beneficiarios_gasolina(db.Model):
     municipio  = db.Column('Municipio', db.String)
     localidad  = db.Column('Localidad', db.String)
     monto = db.Column('Monto', db.Integer)
-    inegi = db.Column('cod_inegi', db.String)
-
-class beneficiarios_integral(db.Model):
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    ano = db.Column('ano', db.String)
-    beneficiario = db.Column('Beneficiario', db.String)
-    rnpa = db.Column('Rnpa', db.String)
-    nombre_proyecto = db.Column('nombre_proyecto', db.String)
-    tipo_apoyo = db.Column('tipo_apoyo', db.String)
-    especie  = db.Column('Especie', db.String)
-    estado  = db.Column('Estado', db.String)
-    municipio  = db.Column('Municipio', db.String)
-    localidad  = db.Column('Localidad', db.String)
-    monto = db.Column('Monto', db.Integer)
-    inegi = db.Column('cod_inegi', db.String)
+    inegi_localidad = db.Column('cod_inegi_localidad', db.String(9))
+    inegi_municipio = db.Column('cod_inegi_municipio', db.String(6))
 
 class solicitudes_diesel(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    tipo = db.Column('tipo', db.String)
     ano = db.Column('ano', db.String)
-    beneficiario = db.Column('Beneficiario', db.String)
-    rnpa = db.Column('Rnpa', db.String)
-    rfc = db.Column('rfc', db.String)
-    estado  = db.Column('Estado', db.String)
-    municipio  = db.Column('Municipio', db.String)
-    localidad  = db.Column('Localidad', db.String)
-    monto = db.Column('Monto', db.Integer)
-    inegi = db.Column('cod_inegi', db.String)                           
+    estado  = db.Column('estado', db.String)                        
+    solicitudes_recibidas = db.Column('solicitudes_recibidas', db.String)
+    solicitudes_procesadas = db.Column('solicitudes_procesadas', db.String)
 
 class beneficiarios_menores(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -217,7 +222,8 @@ class beneficiarios_menores(db.Model):
     localidad  = db.Column('Localidad', db.String)
     tipo_monto = db.Column('tipo_monto', db.String)
     monto = db.Column('Monto', db.Integer)
-    inegi = db.Column('cod_inegi', db.String)   
+    inegi_localidad = db.Column('cod_inegi_localidad', db.String(9))
+    inegi_municipio = db.Column('cod_inegi_municipio', db.String(6)) 
 
 class solicitudes_gasolina(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -228,31 +234,35 @@ class solicitudes_gasolina(db.Model):
     localidad  = db.Column('Localidad', db.String)
     solicitudes_atendidas = db.Column('solicitudes_atendidas', db.Integer)
     solicitudes_recibidas = db.Column('solicitudes_recibidas', db.Integer)
-    inegi = db.Column('cod_inegi', db.String)   
-    
+    inegi_localidad = db.Column('cod_inegi_localidad', db.String(9))
+    inegi_municipio = db.Column('cod_inegi_municipio', db.String(6))
+
 class solicitudes_may(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     ano = db.Column('ano', db.String)
     estado  = db.Column('Estado', db.String)
     municipio  = db.Column('Municipio', db.String)
     localidad  = db.Column('Localidad', db.String)
-    solicitudes_atendidas = db.Column('apoyadas', db.Integer)
-    solicitudes_recibidas = db.Column('Apoyadas', db.Integer)
+    solicitudes_atendidas = db.Column('Apoyadas', db.Integer)
+    solicitudes_recibidas = db.Column('Recibidas', db.Integer)
     monto = db.Column('Monto', db.Integer)
-    inegi = db.Column('cod_inegi', db.String)   
+    inegi_localidad = db.Column('cod_inegi_localidad', db.String(9))
+    inegi_municipio = db.Column('cod_inegi_municipio', db.String(6)) 
 
 class solicitudes_men(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    componente = db.Column('componente', db.String)
-    ano = db.Column('ano', db.String)
+    componente = db.Column('Componente', db.String)
+    ano = db.Column('Ano', db.String)
     estado  = db.Column('Estado', db.String)
     municipio  = db.Column('Municipio', db.String)
     localidad  = db.Column('Localidad', db.String)
     solicitudes_atendidas = db.Column('apoyadas', db.Integer)
     solicitudes_recibidas = db.Column('registradas', db.Integer)    
-    inegi = db.Column('cod_inegi', db.String)  
+    inegi_localidad = db.Column('cod_inegi_localidad', db.String(9))
+    inegi_municipio = db.Column('cod_inegi_municipio', db.String(6))
 
-class beneficiarios_modernicacion_may(db.Model):
+# TODO: Estos modelos son TERRIBLES pero hay que entenderlos mejor para poder hacer la unión.
+class beneficiarios_modernizacion_may_2014(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     ano = db.Column('ano', db.String)
     beneficiario = db.Column('Beneficiario', db.String)
@@ -269,8 +279,8 @@ class beneficiarios_modernicacion_may(db.Model):
     reintegro = db.Column('reintegro', db.Integer)
     pdte_comprobante_pago = db.Column('pdte_comprobante_pago', db.Integer)
     inegi = db.Column('cod_inegi', db.String)   
-              
-class beneficiarios_modernizacion_men(db.Model):
+
+class beneficiarios_modernizacion_may_2015(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     ano = db.Column('ano', db.String)
     beneficiario = db.Column('Beneficiario', db.String)
@@ -280,7 +290,6 @@ class beneficiarios_modernizacion_men(db.Model):
     localidad  = db.Column('Localidad', db.String)
     puerto = db.Column('puerto', db.String)
     embarcacion = db.Column('embarcacion', db.String)
-
     monto_total = db.Column('monto_total', db.Integer)
     aportacion_productor = db.Column('aportacion_productor', db.Integer)
     aportacion_conapesca = db.Column('aportacion_conapesca', db.Integer)
@@ -289,7 +298,6 @@ class beneficiarios_modernizacion_men(db.Model):
     pasivos = db.Column('pasivos', db.Integer)
     desistido = db.Column('desistido', db.Integer)
     saldo = db.Column('saldo', db.Integer)
-    inegi = db.Column('cod_inegi', db.String)        
 
 class beneficiarios_motores(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -300,8 +308,9 @@ class beneficiarios_motores(db.Model):
     municipio  = db.Column('Municipio', db.String)
     localidad  = db.Column('Localidad', db.String)
     tipo_monto = db.Column('Tipo_monto', db.String)
-    monto = db.Column('Monto_apoyado', db.Integer)
-    inegi = db.Column('cod_inegi', db.String)
+    monto = db.Column('Monto', db.Integer)
+    inegi_localidad = db.Column('cod_inegi_localidad', db.String(9))
+    inegi_municipio = db.Column('cod_inegi_municipio', db.String(6))
 
 if enable_search:
-    whooshalchemy.whoosh_index(app, Activo)
+    whooshalchemy.whoosh_index(app, Activos)
