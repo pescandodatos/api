@@ -22,3 +22,15 @@
 ```
     $ python run.py
 ```
+
+## Otros scripts
+
+## Para agregar datos a la base de datos en Sqlite
+
+Los archivos CSV actualizados vienen desde el repositorio https://github.com/pescandodatos/datos
+
+Para ingresarlos a la base de datos corremos el siguiente script:
+
+```
+    $ sh scripts/convert_csv_to_sql.sh
+```
