@@ -47,3 +47,4 @@ Unidecode==0.4.21
 Werkzeug==0.12.2
 Whoosh==2.7.4
 xlrd==1.0.0
+Flask-Testing==0.6.2
