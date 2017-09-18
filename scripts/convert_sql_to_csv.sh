@@ -1,15 +1,13 @@
-<<<<<<< HEAD
 sqlite3 -header -csv app/datos/pescando.db "select * from activos;" > csv_files/activos.csv
+sqlite3 -header -csv app/datos/pescando.db "select * from beneficiarios;" > csv_files/beneficiarios.csv
 sqlite3 -header -csv app/datos/pescando.db "select * from beneficiarios_componentes;" > csv_files/beneficiarios_componentes.csv
 sqlite3 -header -csv app/datos/pescando.db "select * from beneficiarios_electricos;" > csv_files/beneficiarios_electricos.csv
 sqlite3 -header -csv app/datos/pescando.db "select * from beneficiarios_diesel;" > csv_files/beneficiarios_diesel.csv
 sqlite3 -header -csv app/datos/pescando.db "select * from beneficiarios_gasolina;" > csv_files/beneficiarios_gasolina.csv
-sqlite3 -header -csv app/datos/pescando.db "select * from beneficiarios_integral;" > csv_files/beneficiarios_integral.csv
 sqlite3 -header -csv app/datos/pescando.db "select * from beneficiarios_menores;" > csv_files/beneficiarios_menores.csv
 sqlite3 -header -csv app/datos/pescando.db "select * from beneficiarios_modernizacion_may_2014;" > csv_files/beneficiarios_modernizacion_may_2014.csv
 sqlite3 -header -csv app/datos/pescando.db "select * from beneficiarios_modernizacion_may_2015;" > csv_files/beneficiarios_modernizacion_may_2015.csv
 sqlite3 -header -csv app/datos/pescando.db "select * from beneficiarios_motores;" > csv_files/beneficiarios_motores.csv
-sqlite3 -header -csv app/datos/pescando.db "select * from beneficiarios_reconversion;" > csv_files/beneficiarios_reconversion.csv
 sqlite3 -header -csv app/datos/pescando.db "select * from embarcaciones;" > csv_files/embarcaciones_permisos.csv
 sqlite3 -header -csv app/datos/pescando.db "select * from inegi;" > csv_files/inegi.csv
 sqlite3 -header -csv app/datos/pescando.db "select * from marginacion_localidad;" > csv_files/marginacion_localidad.csv
@@ -20,25 +18,3 @@ sqlite3 -header -csv app/datos/pescando.db "select * from solicitudes_gasolina;"
 sqlite3 -header -csv app/datos/pescando.db "select * from solicitudes_may;" > csv_files/solicitudes_may.csv
 sqlite3 -header -csv app/datos/pescando.db "select * from solicitudes_men;" > csv_files/solicitudes_men.csv
 sqlite3 -header -csv app/datos/pescando.db "select * from unidades;" > csv_files/unidades.csv
-=======
-sqlite3 -header -csv ../app/datos/pescando.db "select * from activo;" > csv_files/activo.csv
-sqlite3 -header -csv ../app/datos/pescando.db "select * from beneficiarios_componentes;" > csv_files/beneficiarios_componentes.csv
-sqlite3 -header -csv ../app/datos/pescando.db "select * from beneficiarios_electricos;" > csv_files/beneficiarios_electricos.csv
-sqlite3 -header -csv ../app/datos/pescando.db "select * from beneficiarios_diesel;" > csv_files/beneficiarios_diesel.csv
-sqlite3 -header -csv ../app/datos/pescando.db "select * from beneficiarios_gasolina;" > csv_files/beneficiarios_gasolina.csv
-sqlite3 -header -csv ../app/datos/pescando.db "select * from beneficiarios_integral;" > csv_files/beneficiarios_integral.csv
-sqlite3 -header -csv ../app/datos/pescando.db "select * from beneficiarios_menores;" > csv_files/beneficiarios_menores.csv
-sqlite3 -header -csv ../app/datos/pescando.db "select * from beneficiarios_modernicacion_may;" > csv_files/beneficiarios_modernicacion_may.csv
-sqlite3 -header -csv ../app/datos/pescando.db "select * from beneficiarios_modernizacion_men;" > csv_files/beneficiarios_modernizacion_men.csv
-sqlite3 -header -csv ../app/datos/pescando.db "select * from beneficiarios_motores;" > csv_files/beneficiarios_motores.csv
-sqlite3 -header -csv ../app/datos/pescando.db "select * from beneficiarios_reconversion;" > csv_files/beneficiarios_reconversion.csv
-sqlite3 -header -csv ../app/datos/pescando.db "select * from embarcacion;" > csv_files/embarcacion.csv
-sqlite3 -header -csv ../app/datos/pescando.db "select * from inegi;" > csv_files/inegi.csv
-sqlite3 -header -csv ../app/datos/pescando.db "select * from marginacion;" > csv_files/marginacion.csv
-sqlite3 -header -csv ../app/datos/pescando.db "select * from permiso;" > csv_files/permiso.csv
-sqlite3 -header -csv ../app/datos/pescando.db "select * from solicitudes_diesel;" > csv_files/solicitudes_diesel.csv
-sqlite3 -header -csv ../app/datos/pescando.db "select * from solicitudes_gasolina;" > csv_files/solicitudes_gasolina.csv
-sqlite3 -header -csv ../app/datos/pescando.db "select * from solicitudes_may;" > csv_files/solicitudes_may.csv
-sqlite3 -header -csv ../app/datos/pescando.db "select * from solicitudes_men;" > csv_files/solicitudes_men.csv
-sqlite3 -header -csv ../app/datos/pescando.db "select * from unidad_economica;" > csv_files/unidad_economica.csv
->>>>>>> 8eb559e742e3af55ed55f261828e8e1f190d8279
