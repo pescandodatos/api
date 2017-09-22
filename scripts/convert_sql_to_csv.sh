@@ -5,6 +5,7 @@ sqlite3 -header -csv app/datos/pescando.db "select * from beneficiarios_electric
 sqlite3 -header -csv app/datos/pescando.db "select * from beneficiarios_diesel;" > csv_files/beneficiarios_diesel.csv
 sqlite3 -header -csv app/datos/pescando.db "select * from beneficiarios_gasolina;" > csv_files/beneficiarios_gasolina.csv
 sqlite3 -header -csv app/datos/pescando.db "select * from beneficiarios_menores;" > csv_files/beneficiarios_menores.csv
+sqlite3 -header -csv app/datos/pescando.db "select * from beneficiarios_infraestructura;" > csv_files/beneficiarios_infraestructura.csv
 sqlite3 -header -csv app/datos/pescando.db "select * from beneficiarios_modernizacion_may_2014;" > csv_files/beneficiarios_modernizacion_may_2014.csv
 sqlite3 -header -csv app/datos/pescando.db "select * from beneficiarios_modernizacion_may_2015;" > csv_files/beneficiarios_modernizacion_may_2015.csv
 sqlite3 -header -csv app/datos/pescando.db "select * from beneficiarios_motores;" > csv_files/beneficiarios_motores.csv
