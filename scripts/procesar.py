@@ -12,11 +12,10 @@ def remove_non_ascii(text):
     return unidecode(text).upper() #unicode(text, encoding = "utf-8"))
 
 def main():
-    tables = ['localidades']                
+    tables = ['activos']                
 
     conn = sqlite3.connect('app/datos/pescando.db')        
 
-    conn = sqlite3.connect('pescando.db')
     c = conn.cursor()
     u = conn.cursor()
     p = conn.cursor()
