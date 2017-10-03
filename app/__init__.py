@@ -19,6 +19,7 @@ if not app.debug and os.environ.get('HEROKU') is None:
     app.logger.setLevel(logging.INFO)
     app.logger.info('pescando datos startup')
 
+# In the heroku
 if os.environ.get('HEROKU') is not None:
     import logging
     stream_handler = logging.StreamHandler()
