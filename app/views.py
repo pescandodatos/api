@@ -1,6 +1,6 @@
 from flask import render_template, jsonify
 from app import app, db
-from models import Permisos, Activos, Unidades, Embarcaciones, Marginacion, beneficiarios_infraestructura, beneficiarios_componentes, beneficiarios_diesel, beneficiarios_electricos, beneficiarios_gasolina, solicitudes_diesel, beneficiarios_menores, solicitudes_gasolina, solicitudes_may, solicitudes_men, beneficiarios_motores, Beneficiarios
+from .models import Permisos, Activos, Unidades, Embarcaciones, Marginacion, beneficiarios_infraestructura, beneficiarios_componentes, beneficiarios_diesel, beneficiarios_electricos, beneficiarios_gasolina, solicitudes_diesel, beneficiarios_menores, solicitudes_gasolina, solicitudes_may, solicitudes_men, beneficiarios_motores, Beneficiarios
 
 import flask.ext.restless
 
