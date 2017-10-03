@@ -23,28 +23,31 @@ UPDATE inegi SET COD_INEGI =
 CREATE TABLE `beneficiarios` (
         `nombre`        STRING NOT NULL,
         `rnpa`     STRING,
+		`estado`	STRING,
+		`localidad`	STRING,
+		`municipio`	STRING,
          PRIMARY KEY (`nombre`, `rnpa`)
 );
 
-INSERT OR IGNORE INTO beneficiarios (nombre, rnpa)
-	SELECT beneficiario, rnpa from beneficiarios_componentes;
+INSERT OR IGNORE INTO beneficiarios (nombre, rnpa, estado, localidad, municipio)
+	SELECT beneficiario, rnpa, estado, localidad, municipio from beneficiarios_componentes;
 
 
-INSERT OR IGNORE INTO beneficiarios (nombre, rnpa)
-	SELECT beneficiario, rnpa from beneficiarios_diesel ;
+INSERT OR IGNORE INTO beneficiarios (nombre, rnpa, estado, localidad, municipio)
+	SELECT beneficiario, rnpa, estado, localidad, municipio from beneficiarios_diesel ;
 
 
-INSERT OR IGNORE INTO beneficiarios (nombre, rnpa)
-	SELECT beneficiario, rnpa from beneficiarios_electricos;
+INSERT OR IGNORE INTO beneficiarios (nombre, rnpa, estado, localidad, municipio)
+	SELECT beneficiario, rnpa, estado, localidad, municipio from beneficiarios_electricos;
 
-INSERT OR IGNORE INTO beneficiarios (nombre, rnpa)
-	SELECT beneficiario, rnpa from beneficiarios_gasolina;
+INSERT OR IGNORE INTO beneficiarios (nombre, rnpa, estado, localidad, municipio)
+	SELECT beneficiario, rnpa, estado, localidad, municipio from beneficiarios_gasolina;
 
-INSERT OR IGNORE INTO beneficiarios (nombre, rnpa)
-	SELECT beneficiario, rnpa from beneficiarios_integral;
+INSERT OR IGNORE INTO beneficiarios (nombre, rnpa, estado, localidad, municipio)
+	SELECT beneficiario, rnpa, estado, localidad, municipio from beneficiarios_integral;
 
-INSERT OR IGNORE INTO beneficiarios (nombre, rnpa)
-	SELECT beneficiario, rnpa from beneficiarios_menores;
+INSERT OR IGNORE INTO beneficiarios (nombre, rnpa, estado, localidad, municipio)
+	SELECT beneficiario, rnpa, estado, localidad, municipio from beneficiarios_menores;
 
 INSERT OR IGNORE INTO beneficiarios (nombre, rnpa)
 	SELECT beneficiario, rnpa from beneficiarios_modernizacion_may_2014;
@@ -52,15 +55,18 @@ INSERT OR IGNORE INTO beneficiarios (nombre, rnpa)
 INSERT OR IGNORE INTO beneficiarios (nombre, rnpa)
 	SELECT beneficiario, rnpa from beneficiarios_modernizacion_may_2015;
 
-INSERT OR IGNORE INTO beneficiarios (nombre, rnpa)
-	SELECT beneficiario, rnpa from beneficiarios_motores;
+INSERT OR IGNORE INTO beneficiarios (nombre, rnpa, estado, localidad, municipio)
+	SELECT beneficiario, rnpa, estado, localidad, municipio from beneficiarios_motores;
 
-INSERT OR IGNORE INTO beneficiarios (nombre, rnpa)
-	SELECT beneficiario, rnpa from beneficiarios_reconversion;
+INSERT OR IGNORE INTO beneficiarios (nombre, rnpa, estado, localidad, municipio)
+	SELECT beneficiario, rnpa, estado, localidad, municipio from beneficiarios_reconversion;
 
-INSERT OR IGNORE INTO beneficiarios (nombre, rnpa)
-	SELECT nombre_unidad_economica, rnpa_unidad_economica from embarcaciones;
+INSERT OR IGNORE INTO beneficiarios (nombre, rnpa, estado, localidad, municipio)
+	SELECT nombre_unidad_economica, rnpa_unidad_economica, estado, localidad, municipio from embarcaciones;
 
+-- beneficiarios que no estan en activos
+
+select beneficiarios.nombre, beneficiarios.rnpa, beneficiarios.estado from beneficiarios left join activos on beneficiarios.rnpa = activos.rnpa and beneficiarios.estado = activos.estado and beneficiarios.municipio = activos.municipio and beneficiarios.localidad = activos.localidad where activos.rnpa is null;
 
 -- TOMAR DATOS DE LOCALIDADES
 -- CREAR TABLA SIMPLE CON LOCALIDADES

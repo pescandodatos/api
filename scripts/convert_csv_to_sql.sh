@@ -1,6 +1,9 @@
 # Estos son los comandos para hacer este proceso lo más automatico posible. Aveces será importante manualmente ir a sqlite y editar el schema.
 # Los datos van a tener que ser "masajeados" antes de meterlos a la base de datos
 
+csvsql --insert --no-create --table activos_id --db sqlite:///app/datos/pescando.db app/datos/activos.csv
+
+
 csvsql --insert --table permisos --db sqlite:///datos/pescando.db datos/permisos.csv
 csvsql --insert --table unidades_economicas --db sqlite:///pescando.db ../datos/unidades_economicas.csv
 csvsql --insert --table embarcaciones --db sqlite:///datos/pescando.db datos/embarcaciones.csv
@@ -80,3 +83,11 @@ csvsql --insert --no-create --table beneficiarios_modernicacion_may --db sqlite:
 
 
 #csvsql --insert  --table solicitudes_embarcaciones_menores --db sqlite:///pescando.db 2014_2015_solicitudes_embarcaciones_menores.csv                         
+
+sqlite3 app/datos/pescando.db.bak "Select localidades.estado, inegi.estado from localidades, inegi where localidades.estado like '%' + inegi.estado + '%' OR inegi.estado like '%' + localidades.estado + '%'"
+sqlite3 app/datos/pescando.db.bak "Select localidades.localidad, inegi.localidad from localidades, inegi where localidades.localidad like '%' + inegi.localidad + '%' OR inegi.localidad like '%' + localidades.localidad + '%'"
+sqlite3 app/datos/pescando.db.bak "Select localidades.municipio, inegi.municipio from localidades, inegi where localidades.municipio like '%' + inegi.municipio + '%' OR inegi.municipio like '%' + localidades.municipio + '%'"
+
+
+
+SELECT localidades.estado, inegi.estado FROM localidades, inegi WHERE  IFNULL( INSTR(localidades.estado , inegi.estado),0) = 0
