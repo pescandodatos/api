@@ -10,7 +10,7 @@ PRAGMA case_sensitive_like = false;
 
 ALTER TABLE inegi ADD COLUMN COD_INEGI VARCHAR(9);
 UPDATE inegi SET COD_INEGI = 
-   substr('000'||COD_ESTADO, -3 , 3) || substr('00'||COD_MUNICIPIO, -3, 3) || + substr('00'||COD_LOCALIDAD, -3 , 3);
+   substr('000'||COD_ESTADO, -2 , 2) || substr('00'||COD_MUNICIPIO, -3, 3) || + substr('00'||COD_LOCALIDAD, -4 , 4);
 
 -- add the code that we need
 ALTER TABLE inegi ADD COLUMN COD_INEGI INTEGER;
