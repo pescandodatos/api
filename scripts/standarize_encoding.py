@@ -30,6 +30,7 @@ def main():
         'permisos',
         'solicitudes_may',
         'unidades'
+<<<<<<< HEAD
     ]
 
     conn = sqlite3.connect('app/datos/pescando2.db')
@@ -41,6 +42,19 @@ def main():
         print table
 
         print "NOMBRE\n"
+=======
+    ]                 
+
+    conn = sqlite3.connect('app/datos/pescando.db')
+    c = conn.cursor()
+    u = conn.cursor()
+
+    
+    for table in tables:
+        print table
+        
+        print "NOMBRE\n"        
+>>>>>>> da123bb887a3e6b0a52f98e06c2ec0d4be7d889b
         # STANDARIZE NOMBRE
         select_query = """SELECT nombre FROM {table}"""
         update_query = """UPDATE {table} SET nombre = '{nuevo_estado}'"""
@@ -53,7 +67,11 @@ def main():
                     u.execute(update_query.format(table=table, nuevo_estado=nuevo_estado))
                 except:
                     print "--------- Failed on %s" % estado
+<<<<<<< HEAD
                     print sys.exc_info()[1]
+=======
+                    print sys.exc_info()[1]        
+>>>>>>> da123bb887a3e6b0a52f98e06c2ec0d4be7d889b
         except:
             print "> Failed selecting all from %s" % table
             print sys.exc_info()[1]
@@ -71,7 +89,11 @@ def main():
                     u.execute(update_query.format(table=table, nuevo_beneficiario=nuevo_beneficiario))
                 except:
                     print "--------- Failed on %s" % beneficiario
+<<<<<<< HEAD
                     print sys.exc_info()[1]
+=======
+                    print sys.exc_info()[1]        
+>>>>>>> da123bb887a3e6b0a52f98e06c2ec0d4be7d889b
         except:
             print "> Failed selecting all from %s" % table
             print sys.exc_info()[1]
@@ -89,7 +111,11 @@ def main():
                     u.execute(update_query.format(table=table, nuevo_municipio=nuevo_municipio))
                 except:
                     print "--------- Failed on %s" % municipio
+<<<<<<< HEAD
                     print sys.exc_info()[1]
+=======
+                    print sys.exc_info()[1]        
+>>>>>>> da123bb887a3e6b0a52f98e06c2ec0d4be7d889b
         except:
             print "> Failed selecting all from %s" % table
             print sys.exc_info()[1]
@@ -107,7 +133,11 @@ def main():
                     u.execute(update_query.format(table=table, nuevo_localidad=nuevo_localidad))
                 except:
                     print "--------- Failed on %s" % localidad
+<<<<<<< HEAD
                     print sys.exc_info()[1]
+=======
+                    print sys.exc_info()[1]        
+>>>>>>> da123bb887a3e6b0a52f98e06c2ec0d4be7d889b
         except:
             print "> Failed selecting all from %s" % table
             print sys.exc_info()[1]
@@ -125,7 +155,11 @@ def main():
                     u.execute(update_query.format(table=table, nuevo_estado=nuevo_estado))
                 except:
                     print "--------- Failed on %s" % estado
+<<<<<<< HEAD
                     print sys.exc_info()[1]
+=======
+                    print sys.exc_info()[1]        
+>>>>>>> da123bb887a3e6b0a52f98e06c2ec0d4be7d889b
         except:
             print "> Failed selecting all from %s" % table
             print sys.exc_info()[1]
@@ -135,4 +169,8 @@ def main():
 # unidades y permisos necesitan verificar campos de FECHAS
 
 if __name__ == "__main__":
+<<<<<<< HEAD
     main()
+=======
+    main()
+>>>>>>> da123bb887a3e6b0a52f98e06c2ec0d4be7d889b
