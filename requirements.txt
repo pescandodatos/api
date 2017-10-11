@@ -32,6 +32,7 @@ mimerender==0.6.0
 openpyxl==2.4.8
 parsedatetime==2.4
 promise==2.0.2
+psycopg2==2.7.3.1
 python-dateutil==2.6.1
 python-mimeparse==1.6.0
 python-slugify==1.2.4
