@@ -15,7 +15,7 @@
 
 #### Configurar variables de ambiente
 ```
-    $ export SETTINGS=settings.cfg
+    $ source envvars.sh
 ```
 
 #### Correr la aplicación
@@ -32,5 +32,5 @@ Los archivos CSV actualizados vienen desde el repositorio https://github.com/pes
 Para ingresarlos a la base de datos corremos el siguiente script:
 
 ```
-    $ sh scripts/convert_csv_to_sql.sh
+    $ sh scripts/import_csv_into_psql.sh
 ```
